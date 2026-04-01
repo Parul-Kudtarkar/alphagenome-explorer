@@ -24,17 +24,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
-      - run: npm ci
+      - run: npm install --no-audit --no-fund
       - name: Build static export
         run: npm run build
         env:
-          # Leave unset (or empty repo var) for custom domains served at site root.
-          # For https://<user>.github.io/<repo>/ set repo variable to /repo-name (leading slash).
+          # CRITICAL for a custom domain on the site root (e.g. alphagenome.explorer…):
+          # Do NOT set repository variable NEXT_PUBLIC_BASE_PATH (or leave it empty).
+          # Only set it to /repo-name for https://<user>.github.io/<repo>/
           NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
+      - name: Verify GitHub Pages output (must have root index.html)
+        run: |
+          ls -la out
+          test -f out/index.html
+          # Jekyll would ignore _next without this; ensure it exists in the upload
+          touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: ./out
 
   deploy:
     needs: build

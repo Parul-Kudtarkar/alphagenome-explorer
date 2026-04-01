@@ -17,18 +17,6 @@ A Next.js tool for checking AlphaGenome training data coverage before running th
 
 6. npm install && npm run dev
 
-## GitHub Pages
-
-This app is a **static export** (`next build` → `out/`). To serve it instead of the repo README:
-
-1. Commit and push `.github/workflows/pages.yml` on `main`.
-2. On GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions** (not “Deploy from a branch”).
-3. **Custom domain at site root** (e.g. `alphagenome.explorer…`): do **not** set `NEXT_PUBLIC_BASE_PATH`.
-4. **Default** `https://<user>.github.io/<repo>/`: add a repo **Actions variable** `NEXT_PUBLIC_BASE_PATH` = `/alphagenome-explorer` (leading slash, no trailing slash).
-5. Ensure `public/data/alphagenome_coverage.json` exists in the branch you deploy (commit it or generate in CI) so the explorer can load data.
-
-If the site still looks like this **README**: open the latest **Actions → Deploy to GitHub Pages** run and confirm the **“Verify GitHub Pages output”** step passed. Remove repository variable **`NEXT_PUBLIC_BASE_PATH`** when using a **custom domain at the site root** (only use `/alphagenome-explorer` for `https://<user>.github.io/alphagenome-explorer/`).
-
 ## Stack
 
 - Next.js 14, TypeScript, Tailwind CSS

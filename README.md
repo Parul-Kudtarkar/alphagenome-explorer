@@ -1,0 +1,32 @@
+# AlphaGenome Coverage Explorer
+
+A Next.js tool for checking AlphaGenome training data coverage before running the model.
+
+## Setup
+
+1. Get a free API key at https://deepmind.google.com/science/alphagenome
+
+2. pip install alphagenome pandas
+
+3. Edit scripts/fetch_metadata.py and set your API_KEY
+
+4. python scripts/fetch_metadata.py (generates data/alphagenome_coverage.json)
+
+5. mkdir -p public/data && cp data/alphagenome_coverage.json public/data/alphagenome_coverage.json  
+   (`npm run dev` and `npm run build` also run a script that copies this file automatically when it exists.)
+
+6. npm install && npm run dev
+
+## Stack
+
+- Next.js 14, TypeScript, Tailwind CSS
+- Data: AlphaGenome Python SDK
+
+## Data
+
+The JSON in data/ is generated from the official AlphaGenome API and covers 5,930 human tracks across 11 modalities. Regenerate by running the fetch script.
+
+## Citation
+
+Avsec et al., Nature 649, 1206–1218 (2026)  
+https://www.nature.com/articles/s41586-025-10014-0

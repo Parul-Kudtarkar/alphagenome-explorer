@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-const DATA_URL = "/data/alphagenome_coverage.json";
+const DATA_BASE = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
+const DATA_URL = `${DATA_BASE}/data/alphagenome_coverage.json`;
 
 const NATURE_PAPER_URL =
   "https://www.nature.com/articles/s41586-025-10014-0";
